@@ -11,8 +11,9 @@ jobs:
       matrix:
         env: ['TOXENV=py35', 'TOXENV=py36', 'TOXENV=py37', 'TOXENV=py38', 'TOXENV=py39']
         include:
-          - env: 'TOXENV=py35'
-            python-version: 3.5
+          - env: 
+              - TOXENV: py35
+              - python-version: 3.5
           - env: 'TOXENV=py36'
             python-version: 3.6
           - env: 'TOXENV=py37'
