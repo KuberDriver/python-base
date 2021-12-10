@@ -11,15 +11,15 @@ jobs:
       matrix:
         tox-env: [py35, py36, py37, py38, py39, nolxml, nohtml5lib]
         include:
-          - tox-env: py35
+          - tox-env: TOXENV=py35
             python-version: 3.5
-          - tox-env: py36
+          - tox-env: TOXENV=py36
             python-version: 3.6
-          - tox-env: py37
+          - tox-env: TOXENV=py37
             python-version: 3.7
-          - tox-env: py38
+          - tox-env: TOXENV=py38
             python-version: 3.8
-          - tox-env: py39
+          - tox-env: TOXENV=py39
             python-version: 3.9
     steps:
     - uses: actions/checkout@v1
