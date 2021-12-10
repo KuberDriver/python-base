@@ -22,6 +22,8 @@ jobs:
     - name: Test with tox ${{ matrix.env }}
       env: 
         TOXENV: py35
+      with:
+        python-version: 3.5
       run: tox
     - name: Verify boilerplate
       run: ./hack/verify-boilerplate.sh      
