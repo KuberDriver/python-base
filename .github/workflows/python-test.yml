@@ -12,18 +12,18 @@ jobs:
         pyver: [ {tox-env: py36, python-version: 3.6}, {tox-env: py37, python-version: 3.7}, {tox-env: py38, python-version: 3.8} ]
     steps:
     - uses: actions/checkout@v1
-    - name: Set up Python 3.6
+    - name: Set up Python ${{ matrix.pyver.python-version }}
       uses: actions/setup-python@v2
       with:
-        python-version: ${{ matrix.pyber.python-version }}
+        python-version: ${{ matrix.pyver.python-version }}
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install tox tox-gh-actions
 
-    - name: Test with tox Py  ${{ matrix.pyber.python-version }}
+    - name: Test with tox Py  ${{ matrix.pyver.python-version }}
       env: 
-        TOXENV:  ${{ matrix.pyber.tox-env }}
+        TOXENV:  ${{ matrix.pyver.tox-env }}
       run: ./run_tox.sh tox
     - name: Verify boilerplate
       run: ./hack/verify-boilerplate.sh      
