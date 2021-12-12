@@ -5,11 +5,17 @@ on:
   - pull_request
 
 jobs:
-  build:
+  test:
+    name: Tests
     runs-on: ubuntu-18.04
     strategy:
       matrix:
-        pyver: [ {tox-env: py36, python-version: 3.6}, {tox-env: py37, python-version: 3.7}, {tox-env: py38, python-version: 3.8} ]
+        pyver: [ {tox-env: update-pycodestyle, python-version: 3.9}, {tox-env: coverage,codecov, python-version: 3.9}, {tox-env: docs, python-version: 3.7}, 
+            {tox-env: py35, python-version: 3.5}, {tox-env: py35-functional, python-version: 3.5}, 
+            {tox-env: py36, python-version: 3.6}, {tox-env: py36-functional, python-version: 3.6}, 
+            {tox-env: py37, python-version: 3.7}, {tox-env: py37-functional, python-version: 3.7}, 
+            {tox-env: py38, python-version: 3.8}, {tox-env: py38-functional, python-version: 3.8}, 
+            {tox-env: py38, python-version: 3.9}, {tox-env: py38-functional, python-version: 3.9} ]
     steps:
     - uses: actions/checkout@v1
     - name: Set up Python ${{ matrix.pyver.python-version }}
@@ -25,5 +31,20 @@ jobs:
       env: 
         TOXENV:  ${{ matrix.pyver.tox-env }}
       run: ./run_tox.sh tox
+          
+  
+  verify:
+    name: Verify Boilerplate
+    runs-on: ubuntu-18.04
+    strategy:
+      matrix:
+        pyver: [ {tox-env: py36, python-version: 3.6}, {tox-env: py37, python-version: 3.7}, 
+            {tox-env: py38, python-version: 3.8} ]
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.7
     - name: Verify boilerplate
-      run: ./hack/verify-boilerplate.sh      
+      run: ./hack/verify-boilerplate.sh
