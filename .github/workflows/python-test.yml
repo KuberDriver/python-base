@@ -9,6 +9,7 @@ jobs:
     name: Tests
     runs-on: ubuntu-18.04
     strategy:
+      fail-fast: false
       matrix:
         pyver: [ {tox-env: update-pycodestyle, python-version: 3.9}, {tox-env: coverage,codecov, python-version: 3.9}, {tox-env: docs, python-version: 3.7}, 
             {tox-env: py35, python-version: 3.5}, {tox-env: py35-functional, python-version: 3.5}, 
