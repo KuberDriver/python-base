@@ -36,6 +36,7 @@ popd > /dev/null
 cd "${TMP_DIR}"
 git clone https://github.com/KuberDriver/python.git #https://github.com/kubernetes-client/python.git
 cd python
+git remote show origin
 git config user.email "kubernetes-client@k8s.com"
 git config user.name "kubenetes client"
 git rm -rf kubernetes/base
