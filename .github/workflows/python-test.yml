@@ -41,7 +41,7 @@ jobs:
     - name: Test with tox Py  ${{ matrix.pyver.python-version }}
       env: 
         TOXENV:  ${{ matrix.pyver.tox-env }}
-      run:  ./teststep.sh  #./run_tox.sh tox
+      run: ./run_tox.sh tox
           
   
   verify:
