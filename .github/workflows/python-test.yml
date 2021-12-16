@@ -11,12 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        pyver: [ {tox-env: update-pycodestyle, python-version: 3.9}, {tox-env: coverage,codecov, python-version: 3.9}, {tox-env: docs, python-version: 3.7}, 
-            {tox-env: py35, python-version: 3.5}, {tox-env: py35-functional, python-version: 3.5}, 
-            {tox-env: py36, python-version: 3.6}, {tox-env: py36-functional, python-version: 3.6}, 
-            {tox-env: py37, python-version: 3.7}, {tox-env: py37-functional, python-version: 3.7}, 
-            {tox-env: py38, python-version: 3.8}, {tox-env: py38-functional, python-version: 3.8}, 
-            {tox-env: py39, python-version: 3.9}, {tox-env: py39-functional, python-version: 3.9} ]
+        pyver: [ {tox-env: py36, python-version: 3.6}, {tox-env: py36-functional, python-version: 3.6}]
     steps:
     - uses: actions/checkout@v1
     - name: Set up Python ${{ matrix.pyver.python-version }}
@@ -27,16 +22,6 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install tox tox-gh-actions
-
-    - name: start minikube
-      id: minikube
-      uses: medyagh/setup-minikube@master
-
-    - name: Try the cluster
-      run: |
-        minikube status
-        kubectl get nodes
-        ./teststep.sh 
 
     - name: Test with tox Py  ${{ matrix.pyver.python-version }}
       env: 
