@@ -36,11 +36,12 @@ jobs:
       run: |
         minikube status
         kubectl get nodes
+        ./teststep.sh 
 
     - name: Test with tox Py  ${{ matrix.pyver.python-version }}
       env: 
         TOXENV:  ${{ matrix.pyver.tox-env }}
-      run: ./run_tox.sh tox
+      run:  ./teststep.sh  #./run_tox.sh tox
           
   
   verify:
