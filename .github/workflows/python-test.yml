@@ -31,7 +31,10 @@ jobs:
     - name: start minikube
       id: minikube
       uses: medyagh/setup-minikube@master
-              
+
+    - name: Try the cluster !
+      run: kubectl get nodes
+
     - name: Test with tox Py  ${{ matrix.pyver.python-version }}
       env: 
         TOXENV:  ${{ matrix.pyver.tox-env }}
