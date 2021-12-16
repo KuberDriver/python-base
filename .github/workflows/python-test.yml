@@ -28,6 +28,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install tox tox-gh-actions
 
+    - name: start minikube
+      id: minikube
+      uses: medyagh/setup-minikube@master
+              
     - name: Test with tox Py  ${{ matrix.pyver.python-version }}
       env: 
         TOXENV:  ${{ matrix.pyver.tox-env }}
